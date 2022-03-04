@@ -1,3 +1,5 @@
+'use strict';
+
 import { GlowParticle } from './glowparticle.js';
 
 const COLORS = [
@@ -7,6 +9,19 @@ const COLORS = [
     { r: 255, g: 255, b: 255 },
     { r: 255, g: 255, b: 255 },
 ];
+
+window.requestAnimationFrame = (function () {
+    return (
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        function (f) {
+            window.setTimeout(f, 1e3 / 60);
+        }
+    );
+})();
 
 // const backgroundImage = new Image();
 // backgroundImage.src = './images/bg1.png';
@@ -46,7 +61,7 @@ class App {
         }
         setTimeout(() => {
             window.requestAnimationFrame(this.animate.bind(this));
-        }, 10);
+        }, 110);
     }
 
     createParticles() {

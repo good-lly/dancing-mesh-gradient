@@ -1,3 +1,5 @@
+'use strict';
+
 const PI2 = Math.PI * 2;
 export class GlowParticle {
     constructor(x, y, radius, rgb) {
