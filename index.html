@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Dancing mesh gradients</title>
+
+        <link rel="stylesheet" href="./styles.css?v=1.0" />
+        <style>
+            html {
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+
+            *,
+            *:before,
+            *:after {
+                box-sizing: inherit;
+            }
+
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            ol,
+            ul {
+                margin: 0;
+                padding: 0;
+                font-weight: normal;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <section class="section intro" id="a1">
+            <canvas
+                id="jsIntroCanvas"
+                class="intro-canvas"
+                style="
+                    background: url(./images/bg1.png) no-repeat center center
+                        fixed;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                "
+            ></canvas>
+        </section>
+        <section class="section content" id="a2"></section>
+        <script type="module" src="./app.js"></script>
+    </body>
+</html>
