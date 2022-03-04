@@ -5,7 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <title>Dancing mesh gradients</title>
-
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
         <link rel="stylesheet" href="./styles.css?v=1.0" />
         <style>
             html {
@@ -37,6 +40,15 @@
             img {
                 max-width: 100%;
                 height: auto;
+            }
+            body {
+                min-height: 100vh;
+                min-height: height: calc(var(--vh, 1vh) * 100);
+                min-height: -webkit-fill-available;
+            }
+
+            html {
+                height: -webkit-fill-available;
             }
         </style>
     </head>

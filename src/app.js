@@ -10,6 +10,16 @@ const COLORS = [
     { r: 255, g: 255, b: 255 },
 ];
 
+const debounce = (func, delay) => {
+    let debounceTimer;
+    return () => {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+};
+
 window.requestAnimationFrame = (function () {
     return (
         window.requestAnimationFrame ||
@@ -26,7 +36,7 @@ window.requestAnimationFrame = (function () {
 // const backgroundImage = new Image();
 // backgroundImage.src = './images/bg1.png';
 
-class App {
+class Gradients {
     constructor() {
         this.canvas = jsIntroCanvas;
         this.ctx = this.canvas.getContext('2d');
@@ -42,6 +52,8 @@ class App {
     }
 
     resize() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
         this.stageWidth = window.innerWidth;
         this.stageHeight = window.innerHeight;
 
@@ -86,5 +98,8 @@ class App {
 }
 
 window.onload = () => {
-    new App();
+    let vh = window.innerHeight * 0.01;
+
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    new Gradients();
 };
