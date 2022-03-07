@@ -1,4 +1,4 @@
-const { series, src, dest } = require('gulp'),
+const { series, src, dest, watch } = require('gulp'),
     browserify = require('browserify'),
     connect = require('gulp-connect'),
     source = require('vinyl-source-stream'),
@@ -28,7 +28,7 @@ const build = () => {
     return (
         b
             .bundle()
-            .pipe(source('bundle.js'))
+            .pipe(source('app.js'))
             .pipe(buffer())
             // Add transformation tasks to the pipeline here.
             .pipe(uglify())

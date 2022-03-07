@@ -11,6 +11,16 @@
         />
         <link rel="stylesheet" href="./styles.css?v=1.0" />
         <style>
+            :root {
+                --green-0: #18dfa0;
+                --green-1: #2bc9d2;
+                --blue-0: #2b50d2;
+                --blue-1: #5dc5ff;
+                --purple-0: #8f05e0;
+                --purple-1: #d427ae;
+                --orange-0: #ff9900;
+                --orange-1: #e95617;
+            }
             html {
                 box-sizing: border-box;
                 font-size: 16px;
@@ -43,7 +53,7 @@
             }
             body {
                 min-height: 100vh;
-                min-height: height: calc(var(--vh, 1vh) * 100);
+                min-height: calc(var(--vh, 1vh) * 100);
                 min-height: -webkit-fill-available;
             }
 
@@ -56,11 +66,12 @@
     <body>
         <section class="section intro" id="a1">
             <canvas
-                id="jsIntroCanvas"
-                class="intro-canvas"
+                class="intro-canvas gradient-canvas"
+                data-bgcolor="#ffffff"
+                data-colors="#18dfa0, #2b50d2"
+                data-particles="20"
+                data-bgimage="./images/bg1.png"
                 style="
-                    background: url(./images/bg1.png) no-repeat center center
-                        fixed;
                     -webkit-background-size: cover;
                     -moz-background-size: cover;
                     -o-background-size: cover;
@@ -68,7 +79,21 @@
                 "
             ></canvas>
         </section>
-        <section class="section content" id="a2"></section>
-        <script src="./bundle.js"></script>
+        <section class="section content" id="a2">
+            <canvas
+                class="outro-canvas gradient-canvas"
+                data-bgcolor="#000000"
+                data-colors="#18dfa0, #2b50d2, #8f05e0"
+                data-particles="20"
+                data-bgimage="./images/bg1.png"
+                style="
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+                "
+            ></canvas>
+        </section>
+        <script src="./app.js" type="module"></script>
     </body>
 </html>

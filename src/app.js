@@ -2,13 +2,20 @@
 
 import { GlowParticle } from './glowparticle.js';
 
-const COLORS = [
-    { r: 24, g: 223, b: 160 },
-    { r: 43, g: 80, b: 210 },
-    { r: 255, g: 255, b: 255 },
-    { r: 255, g: 255, b: 255 },
-    { r: 255, g: 255, b: 255 },
-];
+const hexToRgb = (hexArray) => {
+    return hexArray.map((res) => {
+        let entry = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
+            res.trim(),
+        );
+        return entry
+            ? {
+                  r: parseInt(entry[1], 16),
+                  g: parseInt(entry[2], 16),
+                  b: parseInt(entry[3], 16),
+              }
+            : null;
+    });
+};
 
 const debounce = (func, delay) => {
     let debounceTimer;
@@ -20,7 +27,7 @@ const debounce = (func, delay) => {
     };
 };
 
-window.requestAnimationFrame = (function () {
+window.requestAnimationFrame = (() => {
     return (
         window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
@@ -37,18 +44,23 @@ window.requestAnimationFrame = (function () {
 // backgroundImage.src = './images/bg1.png';
 
 class Gradients {
-    constructor() {
-        this.canvas = jsIntroCanvas;
+    constructor(elm) {
+        this.canvas = elm;
+        console.log(elm.dataset);
+        const tempColors = [
+            ...elm.dataset.colors.split(','),
+            ...Array(3).fill(elm.dataset.bgcolor),
+        ];
+        this.colors = hexToRgb(tempColors);
         this.ctx = this.canvas.getContext('2d');
         this.pixelRation = window.devicePixelRatio > 1 ? 2 : 1;
-        this.totalParticles = 20;
+        this.totalParticles = parseInt(elm.dataset.particles) || 20;
         this.particles = [];
         this.maxRadius = window.innerWidth * 0.4;
         this.minRadius = window.innerHeight * 0.4;
-
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
-        window.requestAnimationFrame(this.animate.bind(this));
+        requestAnimationFrame(this.animate.bind(this));
     }
 
     resize() {
@@ -85,10 +97,10 @@ class Gradients {
                 Math.random() * this.stageHeight,
                 Math.random() * (this.maxRadius - this.minRadius) +
                     this.minRadius,
-                COLORS[curColor],
+                this.colors[curColor],
             );
 
-            if (++curColor >= COLORS.length) {
+            if (++curColor >= this.colors.length) {
                 curColor = 0;
             }
 
@@ -99,7 +111,12 @@ class Gradients {
 
 window.onload = () => {
     let vh = window.innerHeight * 0.01;
-
     document.documentElement.style.setProperty('--vh', `${vh}px`);
-    new Gradients();
+
+    const allGradientCanvases =
+        document.getElementsByClassName('gradient-canvas');
+    let gradients = [];
+    for (let i = 0; i < allGradientCanvases.length; i++) {
+        gradients.push(new Gradients(allGradientCanvases[i]));
+    }
 };

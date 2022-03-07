@@ -11,6 +11,17 @@
         />
         <link rel="stylesheet" href="./styles.css?v=1.0" />
         <style>
+
+            :root {
+                --green-0: #18DFA0;
+                --green-1: #2BC9D2;
+                --blue-0: #2B50D2;
+                --blue-1: #5DC5FF;
+                --purple-0: #8F05E0;
+                --purple-1: #D427AE;
+                --orange-0: #FF9900;
+                --orange-1: #E95617;
+            }
             html {
                 box-sizing: border-box;
                 font-size: 16px;
@@ -21,6 +32,8 @@
             *:after {
                 box-sizing: inherit;
             }
+
+
 
             body,
             h1,
@@ -41,6 +54,15 @@
                 max-width: 100%;
                 height: auto;
             }
+            body {
+                min-height: 100vh;
+                min-height: height: calc(var(--vh, 1vh) * 100);
+                min-height: -webkit-fill-available;
+            }
+
+            html {
+                height: -webkit-fill-available;
+            }
         </style>
     </head>
 
@@ -49,6 +71,10 @@
             <canvas
                 id="jsIntroCanvas"
                 class="intro-canvas"
+                data-bg="#ffffff"
+                data-colors="blue"
+                data-particles=""
+                data-bgImage=""
                 style="
                     background: url(./images/bg1.png) no-repeat center center
                         fixed;
@@ -60,6 +86,6 @@
             ></canvas>
         </section>
         <section class="section content" id="a2"></section>
-        <script src="./bundle.js"></script>
+        <script src="./app.js"></script>
     </body>
 </html>
